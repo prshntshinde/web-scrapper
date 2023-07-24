@@ -10,3 +10,7 @@ Scrapping the Iphone details from Flipkart website.
     - cd web-scrapper
 - Create virtual env
     - python -m venv .\ 
+- Activate virtual env
+    - .\Scripts\Activate.ps1
+- install the required dependencies
+    - pip install -r requirements.txt
