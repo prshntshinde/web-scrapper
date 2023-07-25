@@ -6,7 +6,7 @@ import logging
 # Create constant for urls
 base_url = "https://www.flipkart.com"
 base_search_url = "https://www.flipkart.com/search?q="
-query_url = "iphone11"
+query_url = "tv"
 
 # Open url
 url_client = urlopen(base_search_url+query_url)
@@ -23,8 +23,8 @@ del item_container[0:3]
 
 #print(item_container[0].div.div.div.a['href'])
 
-product_url = base_url + item_container[0].div.div.div.a['href']
-#print(product_url)
+product_url = base_url + item_container[2].div.div.div.a['href']
+print(product_url)
 
 for i in item_container:
     pass
@@ -33,6 +33,7 @@ for i in item_container:
 product_request = requests.get(product_url)
 product_html = bs(product_request.text, 'html.parser')
 comment_container = product_html.find_all("div",{"class": "_16PBlm"})
+print(len(comment_container))
 #print(comment_container[0].div.div.div.div.text)
 
 # Get all ratings for a single product
@@ -40,5 +41,14 @@ comment_container = product_html.find_all("div",{"class": "_16PBlm"})
     pass
     #print(i.div.div.div.div.text) """
 
+# Commenter's Name
+print(comment_container[0].div.div.find_all("p",{"class": "_2sc7ZR _2V5EHH"}))
 
-comment_container[0].div.div
+# Rating
+print(comment_container[0].div.div.div.div.text)
+
+# Rating in words
+print(comment_container[0].div.div.div.p.text)
+
+# Actual comment
+print(comment_container[0].div.div.find_all("div",{"class": ""})[0].text)
